@@ -1,7 +1,8 @@
 # SuckLessFactors Auto-Submit
 
 Browser extension that automatically fills your weekly working hours in SAP SuccessFactors by reading PC wake/sleep events from the Windows Event Log so your doings suck less.
-<img width="495" height="458" alt="image" src="https://github.com/user-attachments/assets/3d3f8626-0db5-4cbb-b3bc-45d670aeb4a0" />
+<img width="501" height="497" alt="image" src="https://github.com/user-attachments/assets/cee6b8ac-5ef3-4eb3-9813-29b585a2c042" />
+
 
 ## How it works
 
