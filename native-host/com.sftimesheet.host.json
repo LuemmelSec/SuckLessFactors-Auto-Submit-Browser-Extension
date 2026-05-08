@@ -1,0 +1,7 @@
+{
+  "name": "com.sftimesheet.host",
+  "description": "SF Timesheet Native Messaging Host",
+  "path": "",
+  "type": "stdio",
+  "allowed_origins": []
+}

@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "SuckLess Factors Auto-Submit",
+  "version": "1.0.1",
+  "description": "Automatically submits your weekly working hours to SAP SuccessFactors by reading PC wake/sleep events — no manual input required.",
+  "permissions": [
+    "nativeMessaging",
+    "storage",
+    "webRequest",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://*.successfactors.eu/*",
+    "https://*.successfactors.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.successfactors.eu/*", "https://*.successfactors.com/*"],
+      "js": ["interceptor.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://*.successfactors.eu/*", "https://*.successfactors.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "SuckLess Factors Auto-Submit",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

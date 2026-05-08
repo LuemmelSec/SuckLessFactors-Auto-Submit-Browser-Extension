@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a73e8"/>
+      <stop offset="100%" style="stop-color:#0d47a1"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect x="4" y="4" width="120" height="120" rx="20" ry="20" fill="url(#bg)"/>
+  <!-- SLF text - large, centered, fills the icon -->
+  <text x="64" y="60" font-family="Arial Black, Arial, sans-serif" font-size="48" font-weight="900" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">SLF</text>
+  <!-- Lightning bolt - large, centered below text -->
+  <polygon points="72,72 56,96 66,96 58,118 82,90 70,90 78,72" fill="#ffd600" stroke="#e6c200" stroke-width="1"/>
+</svg>
