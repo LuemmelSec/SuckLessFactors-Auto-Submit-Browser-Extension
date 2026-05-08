@@ -157,6 +157,24 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 );
 
 // ---------------------------------------------------------------------------
+// Clear session data when no SF tabs remain (tab closed or navigated away)
+// ---------------------------------------------------------------------------
+const SESSION_KEYS = ['csrfToken', 'assignmentId', 'companyId', 'anchorDate', 'attendanceTypeCode', 'sfOrigin'];
+
+async function clearSessionIfNoSfTabs() {
+  const tabs = await chrome.tabs.query({ url: SF_URL_PATTERNS });
+  if (tabs.length === 0) {
+    console.log(BG, 'No SF tabs remaining — clearing session data');
+    await chrome.storage.local.remove(SESSION_KEYS);
+  }
+}
+
+chrome.tabs.onRemoved.addListener(() => clearSessionIfNoSfTabs());
+chrome.tabs.onUpdated.addListener((_tabId, changeInfo) => {
+  if (changeInfo.url) clearSessionIfNoSfTabs();
+});
+
+// ---------------------------------------------------------------------------
 // Actively fetch a fresh CSRF token using SAP's Fetch pattern
 // ---------------------------------------------------------------------------
 async function fetchCsrfToken() {

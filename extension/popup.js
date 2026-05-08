@@ -83,6 +83,18 @@ async function init() {
 
   isConnected = !!csrfToken;
 
+  // Also verify a SF tab is actually open — stale storage should not
+  // cause the popup to report "Connected" after logout or tab close.
+  if (isConnected) {
+    const sfTabs = await chrome.tabs.query({
+      url: ['https://*.successfactors.eu/*', 'https://*.successfactors.com/*'],
+    });
+    if (sfTabs.length === 0) {
+      isConnected = false;
+      await chrome.storage.local.remove(['csrfToken', 'assignmentId', 'companyId', 'anchorDate', 'attendanceTypeCode', 'sfOrigin']);
+    }
+  }
+
   // ── Status bar ──────────────────────────────────────────────────────────
   const bar = document.getElementById('status-bar');
   if (isConnected) {
